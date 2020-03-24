@@ -1,0 +1,52 @@
+---
+title: "week9_pdf.Rmd"
+author: "Phoebe Hessen"
+date: "3/20/2020"
+output: pdf_document
+---
+
+# **Libraries**
+```{r, message = F, include = F}
+library(tidyverse)
+library(ggplot2)
+```
+# **Data Import**
+
+Data Cleaning Steps:  
+
+* Import data  
+* Create new column with the row-wise mean of columns q1-q5  
+* Create new column with the row-wise mean of columns q6-q10  
+
+```{r, message = F}
+week9_tbl <- read_csv("../data/week3.csv")
+week9_tbl <- week9_tbl %>%
+    mutate(meanq1q5 = rowMeans(week9_tbl[5:9])) %>%
+    mutate(meanq6q10 = rowMeans(week9_tbl[10:14])) 
+```
+
+# **Visualization**
+```{r, echo = F}
+ggplot(week9_tbl, aes(x = meanq1q5, y = meanq6q10)) +
+    geom_jitter() +
+    geom_smooth(method = "lm", se = F) +
+    labs(x = "Mean of Q1-Q5", y = "Mean of Q6-Q10")
+```
+This is a scatterplot illustrating the relationship between participants' mean score on questions 1-5 and their mean score on questions 6-10, including the OLS regression line. 
+
+# **Analysis**
+```{r}
+cortest <- cor.test(week9_tbl$meanq1q5, week9_tbl$meanq6q10)
+cortest$estimate
+cortest$p.value
+```
+
+The correlation was `r round(cor(week9_tbl$meanq1q5, week9_tbl$meanq6q10), digits = 2)` (`r round(cor.test(week9_tbl$meanq1q5, week9_tbl$meanq6q10)$p.value, digits = 2)`), which is not statistically significant. 
+
+
+
+
+
+
+
+

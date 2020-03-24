@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+```{r R Studio API}
+library(rstudioapi)
+setwd(dirname(getActiveDocumentContext()$path))
+```
+
+```{r Libraries, message = F}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r Data Import, message = F}
+week9_tbl <- read_csv("../data/week3.csv") 
+week9_tbl <- week9_tbl %>%
+    mutate(meanq1q5 = rowMeans(week9_tbl[5:9])) %>%
+    mutate(meanq6q10 = rowMeans(week9_tbl[10:14])) 
+```
+
+```{r Visualization}
+ggplot(week9_tbl, aes(x = meanq1q5, y = meanq6q10)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = F) +
+    labs(x = "Mean of Q1-Q5", y = "Mean of Q6-Q10")
+```
+
+```{r Analysis}
+cortest <- cor.test(week9_tbl$meanq1q5, week9_tbl$meanq6q10)
+cortest$estimate
+cortest$p.value
+```
+
