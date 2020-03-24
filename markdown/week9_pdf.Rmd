@@ -4,8 +4,8 @@ author: "Phoebe Hessen"
 date: "3/20/2020"
 output: pdf_document
 ---
-
-# **Libraries**
+ 
+# **Libraries **
 ```{r, message = F, include = F}
 library(tidyverse)
 library(ggplot2)
@@ -28,7 +28,7 @@ week9_tbl <- week9_tbl %>%
 # **Visualization**
 ```{r, echo = F}
 ggplot(week9_tbl, aes(x = meanq1q5, y = meanq6q10)) +
-    geom_jitter() +
+    geom_point() +
     geom_smooth(method = "lm", se = F) +
     labs(x = "Mean of Q1-Q5", y = "Mean of Q6-Q10")
 ```
