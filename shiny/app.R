@@ -10,7 +10,6 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
-library(rsconnect)
 library(DT)
 
 ui <- fluidPage(
@@ -65,3 +64,8 @@ server <- function(input, output) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
+# App URL: https://phoebe-apps.shinyapps.io/shiny/
+
+
+

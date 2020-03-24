@@ -1,0 +1,10 @@
+name: shiny
+title:
+username:
+account: phoebe-apps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1988427
+bundleId: 2918946
+url: https://phoebe-apps.shinyapps.io/shiny/
+when: 1585068547.00982
